@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_USER: ovecell
+      POSTGRES_PASSWORD: ovecell_password
+      POSTGRES_DB: ovecell_data_warehouse
+    ports:
+      - "5432:5432"
+    volumes:
+      - ovecell-db-data:/var/lib/postgresql/data
+
+volumes:
+  ovecell-db-data:

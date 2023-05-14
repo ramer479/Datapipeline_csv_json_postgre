@@ -1,0 +1,107 @@
+# Conf File for Data Loads
+
+execute_data_pipeline : hb
+
+environment : prod
+release_version : 1
+hb_file_path: ../data/hb
+wwc_file_path : ../data/wwc
+bad_records_path : ../data/bad_records/
+#DB credentials are in the isolated config for encryption
+#Target Table Details
+user_dimension:
+  schema : ovecell
+  target_table : dim_user
+  stg_table : dim_user_stg
+location_dimension:
+  schema : ovecell
+  target_table : dim_location
+  stg_table : dim_location_stg
+user_fact:
+  schema : ovecell
+  target_table : fact_user
+  stg_table : fact_user_stg
+#schema CSV
+csv_schema_yml:
+  - name: id
+    type: string
+  - name: first_name
+    type: string
+  - name: last_name
+    type: string
+  - name: email
+    type: string
+  - name: gender
+    type: string
+  - name: ip_address
+    type: string
+  - name: dob
+    type: string
+
+#schema JSON
+json_schema_yml:
+  - name: gender
+    type: string
+  - name: name
+    type: struct
+    fields:
+      - name: title
+        type: string
+      - name: first
+        type: string
+      - name: last
+        type: string
+  - name: location
+    type: struct
+    fields:
+      - name: street
+        type: string
+      - name: city
+        type: string
+      - name: state
+        type: string
+      - name: postcode
+        type: string
+  - name: email
+    type: string
+  - name: login
+    type: struct
+    fields:
+      - name: username
+        type: string
+      - name: password
+        type: string
+      - name: salt
+        type: string
+      - name: md5
+        type: string
+      - name: sha1
+        type: string
+      - name: sha256
+        type: string
+  - name: dob
+    type: string
+  - name: registered
+    type: string
+  - name: phone
+    type: string
+  - name: cell
+    type: string
+  - name: id
+    type: struct
+    fields:
+      - name: name
+        type: string
+      - name: value
+        type: string
+  - name: picture
+    type: struct
+    fields:
+      - name: large
+        type: string
+      - name: medium
+        type: string
+      - name: thumbnail
+        type: string
+  - name: nat
+    type: string
